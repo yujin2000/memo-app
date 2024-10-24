@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "633752338389",
+    "project_id": "flutter-memo-app-b3f8e",
+    "storage_bucket": "flutter-memo-app-b3f8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633752338389:android:2faf4a76254b4b9f11075c",
+        "android_client_info": {
+          "package_name": "com.hana.flutter_memo_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTipEovLJqpYLlhRGnV_rOVqrGhZg0P8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
