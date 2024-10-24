@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_memo_app/memo_model.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,13 @@ class MemoListController extends GetxController {
     super.onInit();
     memoCollectionRef = FirebaseFirestore.instance.collection('memo');
     loadAllMemos();
+  }
+
+  TextEditingController searchKeywordController = TextEditingController();
+
+  void clearSearchKeyword() {
+    searchKeywordController.text = '';
+    reload();
   }
 
   void loadAllMemos() async {
@@ -39,5 +47,25 @@ class MemoListController extends GetxController {
   void reload() {
     memoGroup = {};
     loadAllMemos();
+  }
+
+  void search(String searchKeyword) {
+    var searchResult = memoList.where((memo) {
+      return memo.title.contains(searchKeyword) ||
+          memo.memo.contains(searchKeyword);
+    }).toList();
+    memoGroup = {};
+    var monthkey = -1;
+    searchResult.map((memo) {
+      monthkey = memo.createdAt.month;
+      var group = memoGroup[monthkey.toString()];
+      if (group == null) {
+        group = [memo];
+      } else {
+        group.add(memo);
+      }
+      memoGroup[monthkey.toString()] = group;
+    }).toList();
+    update();
   }
 }
