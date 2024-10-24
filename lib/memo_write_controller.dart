@@ -56,4 +56,12 @@ class MemoWriteController extends GetxController {
     }
     Get.back(result: newMemoModel);
   }
+
+  void delete() async {
+    var doc =
+        await memoCollectionRef.where('id', isEqualTo: memoModel!.id).get();
+    memoCollectionRef.doc(doc.docs.first.id).delete();
+    // 삭제하면 뒤로 가기, 메모 리스트 새로고침 하기 위해 result 값 true
+    Get.back(result: true);
+  }
 }
