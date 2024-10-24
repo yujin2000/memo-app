@@ -58,31 +58,42 @@ class Home extends StatelessWidget {
             children: List.generate(
               memoList.length,
               (i) {
-                return Container(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Color(0xffECECEC),
-                      ),
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        memoList[i].title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17,
+                return GestureDetector(
+                  onTap: () async {
+                    var result = await Get.to(MemoWritePage(),
+                        binding: BindingsBuilder(() {
+                      Get.put(MemoWriteController(memoModel: memoList[i]));
+                    }));
+                    if (result != null) {
+                      Get.find<MemoListController>().reload();
+                    }
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Color(0xffECECEC),
                         ),
                       ),
-                      Text(
-                        memoList[i].memo,
-                        style:
-                            TextStyle(fontSize: 14, color: Color(0xff848484)),
-                      ),
-                    ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          memoList[i].title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
+                        ),
+                        Text(
+                          memoList[i].memo,
+                          style:
+                              TextStyle(fontSize: 14, color: Color(0xff848484)),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -130,10 +141,14 @@ class Home extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(() => MemoWritePage(), binding: BindingsBuilder(() {
+        onPressed: () async {
+          var result =
+              await Get.to(MemoWritePage(), binding: BindingsBuilder(() {
             Get.put(MemoWriteController());
           }));
+          if (result != null) {
+            Get.find<MemoListController>().reload();
+          }
         },
         backgroundColor: Color(0xffF7C354),
         shape: RoundedRectangleBorder(

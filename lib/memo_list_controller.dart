@@ -35,4 +35,9 @@ class MemoListController extends GetxController {
     print(memoGroup);
     update();
   }
+
+  void reload() {
+    memoGroup = {};
+    loadAllMemos();
+  }
 }

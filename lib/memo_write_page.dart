@@ -42,6 +42,7 @@ class MemoWritePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
+              controller: Get.find<MemoWriteController>().titleTextController,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: '제목을 입력해주세요.',
@@ -64,6 +65,7 @@ class MemoWritePage extends StatelessWidget {
             ),
             Expanded(
               child: TextField(
+                controller: Get.find<MemoWriteController>().memoTextController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: '내용을 입력해주세요.',
