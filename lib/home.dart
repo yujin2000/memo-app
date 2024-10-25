@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_memo_app/admob_banner.dart';
 import 'package:flutter_memo_app/memo_list_controller.dart';
 import 'package:flutter_memo_app/memo_model.dart';
 import 'package:flutter_memo_app/memo_write_controller.dart';
@@ -177,6 +178,7 @@ class Home extends StatelessWidget {
         ),
         child: Image.asset('assets/images/plus.png'),
       ),
+      bottomNavigationBar: AdmobBanner(),
     );
   }
 }

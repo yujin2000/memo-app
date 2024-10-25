@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_memo_app/home.dart';
 import 'package:flutter_memo_app/memo_list_controller.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   await Firebase.initializeApp(
     options: FirebaseOptions(
       apiKey: 'AIzaSyCTipEovLJqpYLlhRGnV_rOVqrGhZg0P8M',
